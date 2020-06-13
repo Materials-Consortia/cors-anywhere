@@ -9,5 +9,7 @@
         "dest": "/server.js",
         "methods": ["GET"]
     }],
-    "env": {}
+    "env": {
+        "CORSANYWHERE_WHITELIST": "https://www.crystallography.net,https://dev-aiida-dev.materialscloud.org,https://optimade.materialsproject.org,https://repository.nomad-coe.eu,https://optimade.odbx.science"
+    }
 }
