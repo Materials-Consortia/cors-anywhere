@@ -10,6 +10,6 @@
         "methods": ["GET"]
     }],
     "env": {
-        "CORSANYWHERE_WHITELIST": "https://www.crystallography.net,https://dev-aiida-dev.materialscloud.org,https://optimade.materialsproject.org,https://repository.nomad-coe.eu,https://optimade.odbx.science"
+        "CORSANYWHERE_WHITELIST_TARGETS": "www.crystallography.net,dev-aiida-dev.materialscloud.org,optimade.materialsproject.org,repository.nomad-coe.eu,optimade.odbx.science"
     }
 }

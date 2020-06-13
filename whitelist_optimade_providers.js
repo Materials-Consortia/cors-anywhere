@@ -30,8 +30,7 @@ net.request({
         }
         result.data.forEach(function(item){
             if (!item.attributes.base_url || item.attributes.base_url.indexOf('example') !== -1) return;
-            var provider_url = url.parse(item.attributes.base_url);
-            providers_urls.push(provider_url.protocol + '//' + provider_url.host);
+            providers_urls.push(url.parse(item.attributes.base_url).host);
         });
         providers_urls = Array.from(new Set(providers_urls));
 
