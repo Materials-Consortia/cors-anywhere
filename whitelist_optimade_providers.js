@@ -6,7 +6,7 @@ var http = require('http'),
 
 
 var args = process.argv.slice(2);
-if (!args.length) throw new Error('Usage: script URL \n\n');
+if (!args.length) throw new Error('Usage: script optimade_providers_json_url \n\n');
 
 var addr = url.parse(args[0]),
     net = (addr.protocol == 'https:') ? https : http;
@@ -17,7 +17,7 @@ net.request({
 }, function(response){
 
     var result = '',
-        providers_urls = [];
+        providers_urls = ['providers.optimade.science', 'providers.optimade.org']; // two default supported providers
 
     response.on('data', function(chunk){
         result += chunk;
