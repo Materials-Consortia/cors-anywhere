@@ -3,10 +3,10 @@
 // This script retrieves all the domains to be whitelisted in the CORS-proxy, as a single string.
 // Simply copy and paste its output into the *now.json* env *CORSANYWHERE_WHITELIST_TARGETS*
 //
-import { Optimade } from 'optimade';
-import url from 'url';
+const opt = require('optimade'),
+    url = require('url');
 
-const optimade = new Optimade({
+const optimade = new opt.Optimade({
     providersUrl: 'https://providers.optimade.org/providers.json'
 });
 
