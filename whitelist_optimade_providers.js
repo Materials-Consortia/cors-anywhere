@@ -1,42 +1,25 @@
 #!/usr/bin/env node
+//
+// This script retrieves all the domains to be whitelisted in the CORS-proxy, as a single string.
+// Simply copy and paste its output into the *now.json* env *CORSANYWHERE_WHITELIST_TARGETS*
+//
+import { Optimade } from 'optimade';
+import url from 'url';
 
-var http = require('http'),
-    https = require('https'),
-    url = require('url');
+const optimade = new Optimade({
+    providersUrl: 'https://providers.optimade.org/providers.json'
+});
 
+let providers_urls = ['providers.optimade.science', 'providers.optimade.org']; // two default providers
 
-var args = process.argv.slice(2);
-if (!args.length) throw new Error('Usage: script optimade_providers_json_url \n\n');
+optimade.getProviders().then(() => {
 
-var addr = url.parse(args[0]),
-    net = (addr.protocol == 'https:') ? https : http;
+    for (let key in optimade.providers){
+        if (!optimade.providers[key].attributes.base_url || optimade.providers[key].attributes.base_url.indexOf('example') !== -1)
+            return;
+        providers_urls.push(url.parse(optimade.providers[key].attributes.base_url).host);
+    }
 
-net.request({
-    host: addr.host,
-    path: addr.path
-}, function(response){
-
-    var result = '',
-        providers_urls = ['providers.optimade.science', 'providers.optimade.org']; // two default supported providers
-
-    response.on('data', function(chunk){
-        result += chunk;
-    });
-    response.on('end', function(){
-        try {
-            result = JSON.parse(result);
-        } catch (e){
-            return console.log('Critical error: ' + e);
-        }
-        result.data.forEach(function(item){
-            if (!item.attributes.base_url || item.attributes.base_url.indexOf('example') !== -1) return;
-            providers_urls.push(url.parse(item.attributes.base_url).host);
-        });
-        providers_urls = Array.from(new Set(providers_urls));
-
-        console.log(providers_urls.join(','));
-    });
-
-}).on('error', function(){
-    console.log('Network error!');
-}).end();
+    providers_urls = Array.from(new Set(providers_urls));
+    console.log(providers_urls.join(','));
+});
