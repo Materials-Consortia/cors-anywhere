@@ -15,8 +15,6 @@ let providers_urls = ['providers.optimade.science', 'providers.optimade.org']; /
 optimade.getProviders().then(() => {
 
     for (let key in optimade.providers){
-        if (!optimade.providers[key].attributes.base_url || optimade.providers[key].attributes.base_url.indexOf('example') !== -1)
-            return;
         providers_urls.push(url.parse(optimade.providers[key].attributes.base_url).host);
     }
 
