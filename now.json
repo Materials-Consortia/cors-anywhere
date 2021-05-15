@@ -10,6 +10,6 @@
         "methods": ["GET"]
     }],
     "env": {
-        "CORSANYWHERE_WHITELIST_TARGETS": "providers.optimade.science,providers.optimade.org,www.crystallography.net,aiida.materialscloud.org,optimade.materialsproject.org,api.mpds.io,optimade.odbx.science,optimade.openmaterialsdb.se,oqmd.org"
+        "CORSANYWHERE_WHITELIST_TARGETS": "www.crystallography.net,providers.optimade.org,oqmd.org,optimade.openmaterialsdb.se,optimade-index.openmaterialsdb.se,optimade.odbx.science,optimade-index.odbx.science,nomad-lab.eu,api.mpds.io,optimade.materialsproject.org,aiida.materialscloud.org,materialscloud.org,www.materialscloud.org,www.optimade.org,aflow.org"
     }
 }

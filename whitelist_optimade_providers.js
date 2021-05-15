@@ -10,13 +10,13 @@ const optimade = new opt.Optimade({
     providersUrl: 'https://providers.optimade.org/providers.json'
 });
 
-let providers_urls = ['providers.optimade.science', 'providers.optimade.org']; // two default providers
+let providers_urls = [];
 
 optimade.getProviders().then(() => {
 
-    for (let key in optimade.providers){
-        providers_urls.push(url.parse(optimade.providers[key].attributes.base_url).host);
-    }
+    optimade.reqStack.forEach((item) => {
+        providers_urls.push(url.parse(item).host);
+    });
 
     providers_urls = Array.from(new Set(providers_urls));
     console.log(providers_urls.join(','));
